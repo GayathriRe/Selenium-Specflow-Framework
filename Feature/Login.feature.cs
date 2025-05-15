@@ -74,14 +74,14 @@ namespace Selenium_Specflow_Framework.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TC01 Login to application")]
+        [NUnit.Framework.DescriptionAttribute("TC01 Login to application using scenario outline")]
         [NUnit.Framework.CategoryAttribute("tag1")]
         [NUnit.Framework.TestCaseAttribute("standard_user", "secret_sauce", null)]
         [NUnit.Framework.TestCaseAttribute("problem_user", "secret_sauce", null)]
         [NUnit.Framework.TestCaseAttribute("performance_glitch_user", "secret_sauce", null)]
         [NUnit.Framework.TestCaseAttribute("error_user", "secret_sauce", null)]
         [NUnit.Framework.TestCaseAttribute("visual_user", "secret_sauce", null)]
-        public void TC01LoginToApplication(string username, string password, string[] exampleTags)
+        public void TC01LoginToApplicationUsingScenarioOutline(string username, string password, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "tag1"};
@@ -93,7 +93,7 @@ namespace Selenium_Specflow_Framework.Feature
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("username", username);
             argumentsOfScenario.Add("password", password);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC01 Login to application", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC01 Login to application using scenario outline", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -148,14 +148,14 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("TC03 Login to application")]
-        public void TC03LoginToApplication()
+        [NUnit.Framework.DescriptionAttribute("TC03 Login to application using data table")]
+        public void TC03LoginToApplicationUsingDataTable()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC03 Login to application", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC03 Login to application using data table", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 24
- this.ScenarioInitialize(scenarioInfo);
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -177,6 +177,36 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("you login with the credentials", ((string)(null)), table1, "When ");
 #line hidden
 #line 29
+ testRunner.Then("the home page opens successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("TC04 Login to application using config file")]
+        public void TC04LoginToApplicationUsingConfigFile()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("TC04 Login to application using config file", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 31
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 32
+ testRunner.Given("you have launched the application", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 33
+ testRunner.When("you login with the credentials using config file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
  testRunner.Then("the home page opens successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

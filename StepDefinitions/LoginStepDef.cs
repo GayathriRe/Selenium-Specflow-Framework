@@ -43,7 +43,7 @@ namespace Selenium_Specflow_Framework.StepDefinitions
             _loginPage.login(username, password);
         }
 
-       
+
 
         [StepDefinition("the home page opens successfully")]
         public void ThenTheHomePageOpensSuccessfully()
@@ -68,9 +68,9 @@ namespace Selenium_Specflow_Framework.StepDefinitions
                 var loginPage = new LoginPage(_driver);
                 _loginPage.login(username, password);
 
-                
+
             }
-           
+
 
 
         }
@@ -78,6 +78,17 @@ namespace Selenium_Specflow_Framework.StepDefinitions
         public void WhenYouLoginWithTheCredentials(Table table)
         {
             _loginPage.login(table.Rows[0]["username"], table.Rows[0]["password"]);
+        }
+
+
+        [StepDefinition("you login with the credentials using config file")]
+        public void WhenYouLoginWithTheCredentialsUsingConfigFile()
+        {
+            var credentials = ConfigHelper.GetActiveCredential();
+            {
+                
+                _loginPage.login(credentials.Username, credentials.Password);
+            }
         }
 
     }
