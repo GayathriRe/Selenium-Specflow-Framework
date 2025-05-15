@@ -23,9 +23,17 @@ namespace Selenium_Specflow_Framework.Pages
 
         public void login(string username, string password)
         {
-            Username.SendKeys(username);
-            Password.SendKeys(password);
-            LoginButton.Click();
+            try
+            {
+                Username.SendKeys(username);
+                Password.SendKeys(password);
+                LoginButton.Click();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Login failed: " + ex.Message);
+               
+            }
         }
 
 
