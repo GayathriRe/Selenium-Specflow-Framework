@@ -46,6 +46,7 @@ namespace SeleniumSpecFlowFramework.Hooks
             {
                 try
                 {
+                    System.Threading.Thread.Sleep(500);
                     string screenshotsDir = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots");
                     Directory.CreateDirectory(screenshotsDir);
 
@@ -53,11 +54,9 @@ namespace SeleniumSpecFlowFramework.Hooks
                     var filePath = Path.Combine(screenshotsDir, fileName);
                     var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
                     screenshot.SaveAsFile(filePath);
-                    string relativePath = Path.Combine("Screenshots", fileName);
 
                     // Log with screenshot
-                    ReportManager.LogFailWithScreenshot($"Step Failed: {stepText}", relativePath);
-
+                    ReportManager.LogFailWithScreenshot($"Step Failed: {_scenarioContext.TestError.Message}", filePath);
 
                     Console.WriteLine($"[Screenshot] Saved to: {filePath}");
                 }
@@ -71,9 +70,9 @@ namespace SeleniumSpecFlowFramework.Hooks
         [AfterScenario]
         public void AfterScenario()
         {
-            if (ScenarioContext.Current.TestError != null)
+            if (_scenarioContext.TestError != null)
             {
-                ReportManager.LogFail(ScenarioContext.Current.TestError.Message);
+                Console.WriteLine($"Scenario failed: {_scenarioContext.TestError.Message}");
             }
             else
             {

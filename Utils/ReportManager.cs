@@ -42,6 +42,7 @@ public static class ReportManager
     public static void LogFail(string message)
     {
         _test?.Fail(message);
+        
     }
 
     public static void FlushReport()
