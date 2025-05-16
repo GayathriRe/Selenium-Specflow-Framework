@@ -11,9 +11,10 @@ public static class ConfigHelper
     {
         configuration = new ConfigurationBuilder()
             .SetBasePath(System.IO.Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
+            .AddJsonFile("appsettings.json",optional: false, reloadOnChange: true)
             .Build();
     }
+    
 
     public class Credential
     {
@@ -28,5 +29,20 @@ public static class ConfigHelper
         var allCreds = configuration.GetSection("Credentials").Get<List<Credential>>();
         return allCreds.FirstOrDefault(c => c.Key == activeKey);
 
+    }
+    public class EmailSettings
+    {
+        public string FromEmail { get; set; }
+        public string ToEmail { get; set; }
+        public string SmtpServer { get; set; }
+        public int Port { get; set; }
+        public string Password { get; set; }
+    }
+
+    public static EmailSettings GetEmailSettings()
+    {
+        var settings = new EmailSettings();
+        configuration.GetSection("EmailSettings").Bind(settings);
+        return settings;
     }
 }
