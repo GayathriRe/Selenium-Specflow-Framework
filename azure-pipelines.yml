@@ -1,0 +1,62 @@
+trigger:
+  branches:
+    include:
+      - master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  solution: 'Selenium-Specflow-Framework.sln'
+  reportsFolder: 'bin/Debug/Reports'
+
+steps:
+# Install .NET 8 SDK
+- task: UseDotNet@2
+  displayName: 'Install .NET 8 SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+# Restore NuGet packages
+- script: dotnet restore $(solution)
+  displayName: 'Restore NuGet packages'
+
+# Build the solution
+- script: dotnet build $(solution) --configuration $(buildConfiguration) --no-restore
+  displayName: 'Build solution'
+
+# Run tests
+- script: dotnet test $(solution) --configuration $(buildConfiguration) --no-build --logger "trx" --results-directory $(System.DefaultWorkingDirectory)/TestResults
+  displayName: 'Run Tests'
+
+# Publish test results
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/*.trx'
+    failTaskOnFailedTests: true
+  displayName: 'Publish Test Results'
+
+# Publish ExtentReports
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/$(reportsFolder)'
+    ArtifactName: 'TestReports'
+    publishLocation: 'Container'
+  displayName: 'Publish Extent Reports'
+
+# Inject email password from Azure DevOps secrets
+- script: |
+    echo "##vso[task.setvariable variable=EmailPassword]$(EmailPassword)"
+  displayName: 'Inject Email Password'
+  env:
+    EmailPassword: $(EmailPassword)
+
+# Send report via email
+- script: dotnet run --project Selenium-Specflow-Framework/EmailSender/EmailSender.csproj
+  displayName: 'Send Test Report via Email'
+  env:
+    EmailPassword: $(EmailPassword)

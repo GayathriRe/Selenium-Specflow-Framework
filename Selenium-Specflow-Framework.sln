@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selenium-Specflow-Framework", "Selenium-Specflow-Framework.csproj", "{7C1125C1-B4E8-45D0-8904-8E7F7640D9D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSender", "..\EmailSender\EmailSender.csproj", "{F6C04D73-5B01-43AC-96B6-23617866144D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7C1125C1-B4E8-45D0-8904-8E7F7640D9D9} = {7C1125C1-B4E8-45D0-8904-8E7F7640D9D9}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,10 @@ Global
 		{7C1125C1-B4E8-45D0-8904-8E7F7640D9D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C1125C1-B4E8-45D0-8904-8E7F7640D9D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C1125C1-B4E8-45D0-8904-8E7F7640D9D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6C04D73-5B01-43AC-96B6-23617866144D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6C04D73-5B01-43AC-96B6-23617866144D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6C04D73-5B01-43AC-96B6-23617866144D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6C04D73-5B01-43AC-96B6-23617866144D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

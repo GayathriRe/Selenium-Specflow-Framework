@@ -11,7 +11,7 @@ public static class ReportManager
 
     public static void InitReport()
     {
-        string reportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reports", "TestReport.html");
+        string reportPath = Path.Combine(Directory.GetCurrentDirectory(), "Reports", "TestReport.html");
 
         Directory.CreateDirectory(Path.GetDirectoryName(reportPath)); // Ensure Reports folder exists
 

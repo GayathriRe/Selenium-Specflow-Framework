@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -41,8 +42,8 @@ public static class ConfigHelper
 
     public static EmailSettings GetEmailSettings()
     {
-        var settings = new EmailSettings();
-        configuration.GetSection("EmailSettings").Bind(settings);
+        var settings = configuration.GetSection("EmailSettings").Get<EmailSettings>();
+        settings.Password = Environment.GetEnvironmentVariable("EmailPassword");
         return settings;
     }
 }
